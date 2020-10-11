@@ -19394,6 +19394,9 @@ var generatePassword = function generatePassword() {
     password += x;
   }
 
+  password = _lodash.default.shuffle(password);
+  password = password.join();
+  password = password.replace(/,/g, '');
   pwEl.innerText = password;
 };
 
@@ -19468,7 +19471,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32903" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42891" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
