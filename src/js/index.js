@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 const pwEl = document.getElementById('pw')
 const copyEl = document.getElementById('copy')
 const lenEl = document.getElementById('len')
@@ -62,7 +64,9 @@ const generatePassword = () => {
     const x = generateX()
     password += x
   }
-
+  password = _.shuffle(password)
+  password = password.join()
+  password = password.replace(/,/g, '')
   pwEl.innerText = password
 }
 
