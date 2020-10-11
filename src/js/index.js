@@ -60,7 +60,6 @@ const generatePassword = () => {
   if (ambigousEl.checked) {
     password += getAmbigousCharacter()
   }
-  password = _.shuffle(password)
   for (let i = password.length; i < len; i++) {
     const x = generateX()
     password += x
