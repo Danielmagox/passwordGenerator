@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 const pwEl = document.getElementById('pw')
 const copyEl = document.getElementById('copy')
 const lenEl = document.getElementById('len')
