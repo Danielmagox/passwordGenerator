@@ -19389,8 +19389,6 @@ var generatePassword = function generatePassword() {
     password += getAmbigousCharacter();
   }
 
-  password = _lodash.default.shuffle(password);
-
   for (var i = password.length; i < len; i++) {
     var x = generateX();
     password += x;
@@ -19470,7 +19468,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34229" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32903" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
