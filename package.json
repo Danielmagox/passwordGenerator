@@ -26,6 +26,7 @@
     "stylelint-config-standard": "^20.0.0"
   },
   "dependencies": {
+    "check-password-strength": "^1.0.15",
     "lodash": "^4.17.20"
   }
 }

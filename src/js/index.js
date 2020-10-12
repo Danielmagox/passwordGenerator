@@ -1,4 +1,5 @@
 import _ from 'lodash'
+const passwordStrength = require('check-password-strength')
 
 const pwEl = document.getElementById('pw')
 const copyEl = document.getElementById('copy')
@@ -8,13 +9,16 @@ const lowerEl = document.getElementById('lower')
 const numberEl = document.getElementById('number')
 const symbolEl = document.getElementById('symbol')
 const generateEl = document.getElementById('generate')
+const checkSec = document.getElementById('security')
 const ambigousEl = document.getElementById('ambigous')
+const formBody = document.querySelector('.pw-body')
 
 const upperLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const lowerLetters = 'abcdefghijklmnopqrstuvwxyz'
 const numbers = '0123456789'
 const symbols = '!@#$%^&*+='
 const ambiguousCharacters = '?¿_()[]/"|~,;:.<>'
+let counter = 0
 
 const getLowercase = () => {
   return lowerLetters[Math.floor(Math.random() * lowerLetters.length)]
@@ -113,4 +117,25 @@ copyEl.addEventListener('click', () => {
   document.execCommand('copy')
   textarea.remove()
   alert('Password copied to clipboard')
+})
+
+checkSec.addEventListener('click', () => {
+  const span = document.createElement('span')
+  span.className += 'form-control'
+  counter++
+  if (passwordStrength(pwEl.innerText).value === 'Weak') {
+    span.innerText = 'Security : Weak'
+  }
+  if (passwordStrength(pwEl.innerText).value === 'Medium') {
+    span.innerText = 'Security : Medium'
+  }
+  if (passwordStrength(pwEl.innerText).value === 'Strong') {
+    span.innerText = 'Security : Strong'
+  }
+  if (counter === 1) {
+    formBody.appendChild(span)
+  } else if (counter >= 2) {
+    formBody.removeChild(formBody.lastElementChild)
+    formBody.appendChild(span)
+  }
 })
