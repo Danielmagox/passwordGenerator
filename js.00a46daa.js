@@ -19323,12 +19323,99 @@ var define;
   }
 }.call(this));
 
-},{"buffer":"../node_modules/buffer/index.js"}],"js/index.js":[function(require,module,exports) {
+},{"buffer":"../node_modules/buffer/index.js"}],"../node_modules/check-password-strength/index.js":[function(require,module,exports) {
+module.exports = (password) => {
+  if (!password) {
+    throw new Error("Password is empty.");
+  }
+
+  const lowerCaseRegex = "(?=.*[a-z])";
+  const upperCaseRegex = "(?=.*[A-Z])";
+  const symbolsRegex = "(?=.*[!@#$%^&*])";
+  const numericRegex = "(?=.*[0-9])";
+
+  let strength = {
+    id: null,
+    value: null,
+    length: null,
+    contains: [],
+  }; 
+  
+  // Default
+  let passwordContains = [];
+
+  if (new RegExp(`^${lowerCaseRegex}`).test(password)) {
+    passwordContains = [
+      ...passwordContains,
+      {
+        message: "lowercase",
+      },
+    ];
+  }
+
+  if (new RegExp(`^${upperCaseRegex}`).test(password)) {
+    passwordContains = [
+      ...passwordContains,
+      {
+        message: "uppercase",
+      },
+    ];
+  }
+
+  if (new RegExp(`^${symbolsRegex}`).test(password)) {
+    passwordContains = [
+      ...passwordContains,
+      {
+        message: "symbol",
+      },
+    ];
+  }
+
+  if (new RegExp(`^${numericRegex}`).test(password)) {
+    passwordContains = [
+      ...passwordContains,
+      {
+        message: "number",
+      },
+    ];
+  }
+
+  const strongRegex = new RegExp(
+    `^${lowerCaseRegex}${upperCaseRegex}${numericRegex}${symbolsRegex}(?=.{8,})`
+  );
+  const mediumRegex = new RegExp(
+    `^((${lowerCaseRegex}${upperCaseRegex})|(${lowerCaseRegex}${numericRegex})|(${upperCaseRegex}${numericRegex})|(${upperCaseRegex}${symbolsRegex})|(${lowerCaseRegex}${symbolsRegex})|(${numericRegex}${symbolsRegex}))(?=.{6,})`
+  );
+
+  if (strongRegex.test(password)) {
+    strength = {
+      id: 2,
+      value: "Strong",
+    };
+  } else if (mediumRegex.test(password)) {
+    strength = {
+      id: 1,
+      value: "Medium",
+    };
+  } else {
+    strength = {
+      id: 0,
+      value: "Weak",
+    };
+  }
+  strength.length = password.length;
+  strength.contains = passwordContains;
+  return strength;
+};
+
+},{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _lodash = _interopRequireDefault(require("lodash"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var passwordStrength = require('check-password-strength');
 
 var pwEl = document.getElementById('pw');
 var copyEl = document.getElementById('copy');
@@ -19338,12 +19425,15 @@ var lowerEl = document.getElementById('lower');
 var numberEl = document.getElementById('number');
 var symbolEl = document.getElementById('symbol');
 var generateEl = document.getElementById('generate');
+var checkSec = document.getElementById('security');
 var ambigousEl = document.getElementById('ambigous');
+var formBody = document.querySelector('.pw-body');
 var upperLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var lowerLetters = 'abcdefghijklmnopqrstuvwxyz';
 var numbers = '0123456789';
 var symbols = '!@#$%^&*+=';
 var ambiguousCharacters = '?¿_()[]/"|~,;:.<>';
+var counter = 0;
 
 var getLowercase = function getLowercase() {
   return lowerLetters[Math.floor(Math.random() * lowerLetters.length)];
@@ -19443,7 +19533,31 @@ copyEl.addEventListener('click', function () {
   textarea.remove();
   alert('Password copied to clipboard');
 });
-},{"lodash":"../node_modules/lodash/lodash.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+checkSec.addEventListener('click', function () {
+  var span = document.createElement('span');
+  span.className += 'form-control';
+  counter++;
+
+  if (passwordStrength(pwEl.innerText).value === 'Weak') {
+    span.innerText = 'Security : Weak';
+  }
+
+  if (passwordStrength(pwEl.innerText).value === 'Medium') {
+    span.innerText = 'Security : Medium';
+  }
+
+  if (passwordStrength(pwEl.innerText).value === 'Strong') {
+    span.innerText = 'Security : Strong';
+  }
+
+  if (counter === 1) {
+    formBody.appendChild(span);
+  } else if (counter >= 2) {
+    formBody.removeChild(formBody.lastElementChild);
+    formBody.appendChild(span);
+  }
+});
+},{"lodash":"../node_modules/lodash/lodash.js","check-password-strength":"../node_modules/check-password-strength/index.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -19471,7 +19585,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45967" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38115" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
