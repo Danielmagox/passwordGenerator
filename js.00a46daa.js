@@ -19428,6 +19428,7 @@ var generateEl = document.getElementById('generate');
 var checkSec = document.getElementById('security');
 var ambigousEl = document.getElementById('ambigous');
 var formBody = document.querySelector('.pw-body');
+var userPwd = document.getElementById('user_pwd');
 var upperLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var lowerLetters = 'abcdefghijklmnopqrstuvwxyz';
 var numbers = '0123456789';
@@ -19538,15 +19539,15 @@ checkSec.addEventListener('click', function () {
   span.className += 'form-control';
   counter++;
 
-  if (passwordStrength(pwEl.innerText).value === 'Weak') {
+  if (passwordStrength(userPwd.value).value === 'Weak') {
     span.innerText = 'Security : Weak';
   }
 
-  if (passwordStrength(pwEl.innerText).value === 'Medium') {
+  if (passwordStrength(userPwd.value).value === 'Medium') {
     span.innerText = 'Security : Medium';
   }
 
-  if (passwordStrength(pwEl.innerText).value === 'Strong') {
+  if (passwordStrength(userPwd.value).value === 'Strong') {
     span.innerText = 'Security : Strong';
   }
 
@@ -19585,7 +19586,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38115" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43213" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
