@@ -12,6 +12,7 @@ const generateEl = document.getElementById('generate')
 const checkSec = document.getElementById('security')
 const ambigousEl = document.getElementById('ambigous')
 const formBody = document.querySelector('.pw-body')
+const userPwd = document.getElementById('user_pwd')
 
 const upperLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const lowerLetters = 'abcdefghijklmnopqrstuvwxyz'
@@ -37,7 +38,9 @@ const getSymbol = () => {
 }
 
 const getAmbigousCharacter = () => {
-  return ambiguousCharacters[Math.floor(Math.random() * ambiguousCharacters.length)]
+  return ambiguousCharacters[
+    Math.floor(Math.random() * ambiguousCharacters.length)
+  ]
 }
 
 const generatePassword = () => {
@@ -123,13 +126,13 @@ checkSec.addEventListener('click', () => {
   const span = document.createElement('span')
   span.className += 'form-control'
   counter++
-  if (passwordStrength(pwEl.innerText).value === 'Weak') {
+  if (passwordStrength(userPwd.value).value === 'Weak') {
     span.innerText = 'Security : Weak'
   }
-  if (passwordStrength(pwEl.innerText).value === 'Medium') {
+  if (passwordStrength(userPwd.value).value === 'Medium') {
     span.innerText = 'Security : Medium'
   }
-  if (passwordStrength(pwEl.innerText).value === 'Strong') {
+  if (passwordStrength(userPwd.value).value === 'Strong') {
     span.innerText = 'Security : Strong'
   }
   if (counter === 1) {

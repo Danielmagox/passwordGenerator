@@ -86,3 +86,7 @@ body {
   border-radius: 10px;
   width: 100%;
 }
+
+#user_pwd {
+  margin-left: 2rem;
+}

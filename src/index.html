@@ -1,54 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Password Generator</title>
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.12.1/css/all.css">
-        <script src="js/index.js" defer></script>
-    </head>
-    <body>
-        <div class="pw-container">
-            <h1> Password Generator</h1>
-            <div class="pw-header">
-                <div class="pw">
-                    <span id="pw">Password</span>
-                    <button id="copy"><i class="far fa-clipboard"></i></button>
-                </div>
-            </div>
-            <div class="pw-body">
-                <div class="form-control">
-                    <label for="len">Password Length</label>
-                    <input id="len" value="15" type="number" min="2" max="30" />
-                </div>
-                <div class="form-control">
-                    <label for="upper">Contain Uppercase Letters</label>
-                    <input id="upper" type="checkbox" checked/>
-                </div>
-                <div class="form-control">
-                    <label for="lower">Contain Lowercase Letters</label>
-                    <input id="lower" type="checkbox" checked/>
-                </div>
-                <div class="form-control">
-                    <label for="number">Contain Numbers</label>
-                    <input id="number" type="checkbox" checked/>
-                </div>
-                <div class="form-control">
-                    <label for="symbol">Contain Symbols</label>
-                    <input id="symbol" type="checkbox" />
-                </div>
-                <div class="form-control">
-                    <label for="ambigous">Contain Ambigous Characters</label>
-                    <input id="ambigous" type="checkbox" />
-                </div>
-                <button class="generate" id="generate">
-                    Generate Password
-                </button>
-                    <button class="generate" id="security">
-                        Check Password Security
-                    </button>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.12.1/css/all.css">
+    <script src="js/index.js" defer></script>
+</head>
+
+<body>
+    <div class="pw-container">
+        <h1> Password Generator</h1>
+        <div class="pw-header">
+            <div class="pw">
+                <span id="pw">Password</span>
+                <button id="copy"><i class="far fa-clipboard"></i></button>
             </div>
         </div>
-    </body>
+        <div class="pw-body">
+            <div class="form-control">
+                <label for="len">Password Length</label>
+                <input id="len" value="15" type="number" min="2" max="30" />
+            </div>
+            <div class="form-control">
+                <label for="upper">Contain Uppercase Letters</label>
+                <input id="upper" type="checkbox" checked />
+            </div>
+            <div class="form-control">
+                <label for="lower">Contain Lowercase Letters</label>
+                <input id="lower" type="checkbox" checked />
+            </div>
+            <div class="form-control">
+                <label for="number">Contain Numbers</label>
+                <input id="number" type="checkbox" checked />
+            </div>
+            <div class="form-control">
+                <label for="symbol">Contain Symbols</label>
+                <input id="symbol" type="checkbox" />
+            </div>
+            <div class="form-control">
+                <label for="ambigous">Contain Ambigous Characters</label>
+                <input id="ambigous" type="checkbox" />
+            </div>
+            <div class="form-control">
+                <label for="user_pwd">Check your password</label>
+                <input id="user_pwd" type="password" value="" />
+            </div>
+            <button class="generate" id="generate">
+                Generate Password
+            </button>
+            <button class="generate" id="security">
+                Check Password Security
+            </button>
+        </div>
+    </div>
+</body>
+
 </html>
